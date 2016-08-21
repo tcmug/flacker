@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% from "macros.html" import render_field %}
+
+{% block navigation %}
+    <!--- Navigation disavbled -->
+{% endblock %}
+
+{% block content %}
+
+    <div class="user login">
+        <form action="{{ url_for('user.user_login') }}" method="post">
+            {{ render_field(login_form.name) }}
+            {{ render_field(login_form.password) }}
+            {{ render_field(login_form.submit) }}
+            {{ login_form.csrf_token }}
+        </form>
+    </div>
+
+{% endblock %}
