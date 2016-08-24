@@ -7,7 +7,7 @@ Simply (after installing Docker naturally) you run:
 `docker build -t flacker/latest`
 
 
-`docker run -p 8080:8080 -v $(pwd)/www:/app/www flacker/latest`
+`docker run -ti -p 8080:8080 -v $(pwd)/www:/app/www flacker/latest`
 
 After all the setup is done, surf to `localhost:8080`
 

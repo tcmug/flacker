@@ -17,6 +17,27 @@ def create_app_and_db():
 # Bootstrap.
 app, db = create_app_and_db()
 
+# Temporary - this will be made better.
+import os.path
+if not os.path.isfile("/tmp/db_created"):
+    from user.models import User
+
+    db.create_all()
+
+    admin = User()
+    admin.username = 'admin'
+    admin.email = 'admin@example.com'
+    admin.password_hash = None
+    admin.login_token = 'abba'
+
+    print admin.get_one_time_login_url()
+
+    db.session.add(admin)
+    db.session.commit()
+
+    file = open('/tmp/db_created', 'w+')
+
+
 @app.route('/', methods=["GET"])
 def index():
     """Index bounces to user.user_login when anonymous or present a 404 message"""
